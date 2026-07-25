@@ -3,4 +3,3 @@ dist/
 coverage/
 uploads/*
 !uploads/.gitkeep
-.env
