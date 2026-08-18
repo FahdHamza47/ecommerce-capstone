@@ -105,7 +105,7 @@ ecommerce-capstone/
 
 ```bash
 git clone https://github.com/FahdHamza47/ecommerce-capstone.git
-cd YOUR_REPO_NAME
+cd ecommerce-capstone
 ```
 
 ### 2. Backend setup
@@ -125,7 +125,7 @@ JWT_SECRET=any_long_random_string
 NODE_ENV=development
 ```
 
-Seed the database with a demo admin, a demo customer, and 8 sample products:
+Seed the database with a demo admin, a demo customer
 
 ```bash
 npm run seed

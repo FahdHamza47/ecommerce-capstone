@@ -1,5 +1,8 @@
 node_modules/
 dist/
 coverage/
+.env
+.env.*
+!.env.example
 uploads/*
-!uploads/uploadMiddleware.ts
+!uploads/.gitkeep
