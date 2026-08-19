@@ -1,6 +1,7 @@
 import { Response } from "express";
 import Order from "../models/Order";
 import Cart from "../models/Cart";
+import Product from "../models/Product";
 import { AuthRequest } from "../middleware/authMiddleware";
 
 // @route  POST /api/orders

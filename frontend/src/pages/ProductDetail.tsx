@@ -6,6 +6,7 @@ import * as productService from "../services/productService";
 import { useCart } from "../context/CartContext";
 import Button from "../components/ui/Button";
 import { Skeleton } from "../components/ui/Skeleton";
+import { getImageUrl } from "../utils/getImageUrl";
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -66,9 +67,7 @@ const ProductDetail = () => {
     );
   }
 
-  const imageUrl = product.images[0]
-    ? `http://localhost:5000${product.images[0]}`
-    : "https://placehold.co/600x600/f4f4f5/94a3b8?text=No+Image";
+  const imageUrl = getImageUrl(product.images[0]);
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

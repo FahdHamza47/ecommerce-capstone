@@ -11,6 +11,7 @@ import ProductForm, {
 } from "../../components/product/ProductForm";
 import EmptyState from "../../components/ui/EmptyState";
 import { Skeleton } from "../../components/ui/Skeleton";
+import { getImageUrl } from "../../utils/getImageUrl";
 
 const AdminProducts = () => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -140,9 +141,7 @@ const AdminProducts = () => {
               </thead>
               <tbody>
                 {products.map((product) => {
-                  const thumb = product.images[0]
-                    ? `http://localhost:5000${product.images[0]}`
-                    : "https://placehold.co/100x100/f4f4f5/94a3b8?text=No+Image";
+                  const thumb = getImageUrl(product.images[0], "No+Image");
 
                   return (
                     <tr

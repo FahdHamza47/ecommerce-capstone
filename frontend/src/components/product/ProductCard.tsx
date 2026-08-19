@@ -4,6 +4,7 @@ import { ShoppingCart, Star } from "lucide-react";
 import type { Product } from "../../types";
 import { useCart } from "../../context/CartContext";
 import Button from "../ui/Button";
+import { getImageUrl } from "../../utils/getImageUrl";
 
 interface ProductCardProps {
   product: Product;
@@ -21,9 +22,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     setIsAdding(false);
   };
 
-  const imageUrl = product.images[0]
-    ? `http://localhost:5000${product.images[0]}`
-    : "https://placehold.co/400x400/f4f4f5/94a3b8?text=No+Image";
+  const imageUrl = getImageUrl(product.images[0]);
 
   return (
     <Link

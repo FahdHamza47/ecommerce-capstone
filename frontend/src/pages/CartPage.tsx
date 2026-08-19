@@ -3,6 +3,7 @@ import { Minus, Plus, Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import Button from "../components/ui/Button";
 import EmptyState from "../components/ui/EmptyState";
+import { getImageUrl } from "../utils/getImageUrl";
 
 const TAX_RATE = 0.08;
 const FREE_SHIPPING_THRESHOLD = 50;
@@ -65,9 +66,7 @@ const CartPage = () => {
         {/* Cart Items */}
         <div className="lg:col-span-2 space-y-4">
           {items.map((item) => {
-            const imageUrl = item.product.images[0]
-              ? `http://localhost:5000${item.product.images[0]}`
-              : "https://placehold.co/150x150/f4f4f5/94a3b8?text=No+Image";
+            const imageUrl = getImageUrl(item.product.images[0], "No+Image");
 
             return (
               <div

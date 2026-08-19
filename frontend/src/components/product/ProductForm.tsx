@@ -2,6 +2,7 @@ import { useState, useEffect, type FormEvent } from "react";
 import { Upload, X } from "lucide-react";
 import type { Product } from "../../types";
 import Button from "../ui/Button";
+import { getImageUrl } from "../../utils/getImageUrl";
 
 export interface ProductFormValues {
   name: string;
@@ -48,9 +49,7 @@ const ProductForm = ({
         brand: initialProduct.brand,
         stock: String(initialProduct.stock),
       });
-      setPreviews(
-        initialProduct.images.map((img) => `http://localhost:5000${img}`),
-      );
+      setPreviews(initialProduct.images.map((img) => getImageUrl(img)));
     }
   }, [initialProduct]);
 
