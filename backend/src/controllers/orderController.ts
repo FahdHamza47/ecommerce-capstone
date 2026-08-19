@@ -14,6 +14,29 @@ export const createOrder = async (req: AuthRequest, res: Response) => {
       res.status(400).json({ message: "No order items provided" });
       return;
     }
+    const reserved: { productId: string; quantity: number }[] = [];
+
+    for (const item of orderItems) {
+      const updatedProduct = await Product.findOneAndUpdate(
+        { _id: item.product, stock: { $gte: item.quantity } },
+        { $inc: { stock: -item.quantity } },
+        { new: true },
+      );
+
+      if (!updatedProduct) {
+        for (const r of reserved) {
+          await Product.findByIdAndUpdate(r.productId, {
+            $inc: { stock: r.quantity },
+          });
+        }
+        res.status(400).json({
+          message: `Insufficient stock for "${item.name}". Please update your cart and try again.`,
+        });
+        return;
+      }
+
+      reserved.push({ productId: item.product, quantity: item.quantity });
+    }
 
     const order = await Order.create({
       user: req.user!._id,
@@ -82,4 +105,3 @@ export const updateOrderStatus = async (req: AuthRequest, res: Response) => {
     res.status(500).json({ message: (error as Error).message });
   }
 };
-1;
