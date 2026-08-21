@@ -60,12 +60,16 @@ const Login = () => {
           )}
 
           <div>
-            <label className="block text-sm font-medium text-ink-700 mb-1.5">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-ink-700 mb-1.5"
+            >
               Email
             </label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-500" />
               <input
+                id="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -77,12 +81,16 @@ const Login = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-ink-700 mb-1.5">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-ink-700 mb-1.5"
+            >
               Password
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-500" />
               <input
+                id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -92,7 +100,6 @@ const Login = () => {
               />
             </div>
           </div>
-
           <Button
             type="submit"
             size="lg"

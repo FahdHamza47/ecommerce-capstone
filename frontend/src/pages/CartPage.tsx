@@ -93,6 +93,7 @@ const CartPage = () => {
 
                 <div className="flex items-center border border-gray-200 rounded-lg">
                   <button
+                    aria-label="Decrease quantity"
                     onClick={() =>
                       updateQuantity(
                         item.product._id,
@@ -107,6 +108,7 @@ const CartPage = () => {
                     {item.quantity}
                   </span>
                   <button
+                    aria-label="Increase quantity"
                     onClick={() =>
                       updateQuantity(item.product._id, item.quantity + 1)
                     }
@@ -121,6 +123,7 @@ const CartPage = () => {
                 </p>
 
                 <button
+                  aria-label="Remove item"
                   onClick={() => removeFromCart(item.product._id)}
                   className="p-2 text-ink-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
                 >

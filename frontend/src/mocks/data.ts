@@ -48,3 +48,31 @@ export const mockUser = {
   role: "customer" as const,
   token: "mock-jwt-token",
 };
+
+export const mockOrder = {
+  _id: "order1",
+  user: mockUser._id,
+  orderItems: [
+    {
+      product: mockProducts[0]._id,
+      name: mockProducts[0].name,
+      image: mockProducts[0].images[0],
+      price: mockProducts[0].price,
+      quantity: 2,
+    },
+  ],
+  shippingAddress: {
+    fullName: "Jane Doe",
+    address: "123 Main St",
+    city: "Springfield",
+    postalCode: "12345",
+    country: "USA",
+    phone: "555-0100",
+  },
+  subtotal: 179.98,
+  tax: 14.4,
+  shipping: 0,
+  totalPrice: 194.38,
+  status: "Pending" as const,
+  createdAt: "2024-06-01T00:00:00.000Z",
+};

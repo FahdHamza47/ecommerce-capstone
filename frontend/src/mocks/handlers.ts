@@ -1,5 +1,5 @@
 import { http, HttpResponse } from "msw";
-import { mockProducts, mockCart, mockUser } from "./data";
+import { mockProducts, mockCart, mockUser, mockOrder } from "./data";
 
 const API_BASE = "http://localhost:5000/api";
 
@@ -62,11 +62,32 @@ export const handlers = [
     return HttpResponse.json(mockCart);
   }),
 
-  http.put(`${API_BASE}/cart/:productId`, async () => {
-    return HttpResponse.json(mockCart);
+  http.put(`${API_BASE}/cart/:productId`, async ({ params, request }) => {
+    const body = (await request.json()) as { quantity: number };
+    const updatedItems = mockCart.items.map((item) =>
+      item.product._id === params.productId
+        ? { ...item, quantity: body.quantity }
+        : item,
+    );
+    return HttpResponse.json({ ...mockCart, items: updatedItems });
   }),
 
-  http.delete(`${API_BASE}/cart/:productId`, async () => {
-    return HttpResponse.json({ ...mockCart, items: [] });
+  http.delete(`${API_BASE}/cart/:productId`, async ({ params }) => {
+    const remainingItems = mockCart.items.filter(
+      (item) => item.product._id !== params.productId,
+    );
+    return HttpResponse.json({ ...mockCart, items: remainingItems });
+  }),
+
+  http.delete(`${API_BASE}/cart`, () => {
+    return HttpResponse.json({ message: "Cart cleared" });
+  }),
+
+  http.post(`${API_BASE}/orders`, async () => {
+    return HttpResponse.json(mockOrder, { status: 201 });
+  }),
+
+  http.get(`${API_BASE}/orders/myorders`, () => {
+    return HttpResponse.json([mockOrder]);
   }),
 ];

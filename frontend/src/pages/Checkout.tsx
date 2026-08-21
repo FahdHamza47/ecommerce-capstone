@@ -100,10 +100,14 @@ const Checkout = () => {
             </h2>
 
             <div>
-              <label className="block text-sm font-medium text-ink-700 mb-1.5">
+              <label
+                htmlFor="fullName"
+                className="block text-sm font-medium text-ink-700 mb-1.5"
+              >
                 Full Name
               </label>
               <input
+                id="fullName"
                 required
                 name="fullName"
                 value={form.fullName}
@@ -113,10 +117,14 @@ const Checkout = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-ink-700 mb-1.5">
+              <label
+                htmlFor="address"
+                className="block text-sm font-medium text-ink-700 mb-1.5"
+              >
                 Street Address
               </label>
               <input
+                id="address"
                 required
                 name="address"
                 value={form.address}
@@ -127,10 +135,14 @@ const Checkout = () => {
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-ink-700 mb-1.5">
+                <label
+                  htmlFor="city"
+                  className="block text-sm font-medium text-ink-700 mb-1.5"
+                >
                   City
                 </label>
                 <input
+                  id="city"
                   required
                   name="city"
                   value={form.city}
@@ -139,10 +151,14 @@ const Checkout = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-ink-700 mb-1.5">
+                <label
+                  htmlFor="postalCode"
+                  className="block text-sm font-medium text-ink-700 mb-1.5"
+                >
                   Postal Code
                 </label>
                 <input
+                  id="postalCode"
                   required
                   name="postalCode"
                   value={form.postalCode}
@@ -154,10 +170,14 @@ const Checkout = () => {
 
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-ink-700 mb-1.5">
+                <label
+                  htmlFor="country"
+                  className="block text-sm font-medium text-ink-700 mb-1.5"
+                >
                   Country
                 </label>
                 <input
+                  id="country"
                   required
                   name="country"
                   value={form.country}
@@ -166,10 +186,14 @@ const Checkout = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-ink-700 mb-1.5">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-ink-700 mb-1.5"
+                >
                   Phone
                 </label>
                 <input
+                  id="phone"
                   required
                   name="phone"
                   value={form.phone}
