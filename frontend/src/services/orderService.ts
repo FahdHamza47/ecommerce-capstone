@@ -16,8 +16,14 @@ export const createOrder = async (
   const { data } = await api.post<Order>("/orders", payload);
   return data;
 };
+
+export const getMyOrders = async (): Promise<Order[]> => {
+  const { data } = await api.get<Order[]>("/orders/myorders");
+  return data;
+};
+
 export const getAllOrders = async (): Promise<Order[]> => {
-  const { data } = await api.get<Order[]>("/orders");
+  const { data } = await api.get<Order[]>("/orders/myorders");
   return data;
 };
 

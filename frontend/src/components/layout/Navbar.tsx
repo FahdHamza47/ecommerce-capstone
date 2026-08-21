@@ -8,6 +8,7 @@ import {
   LogOut,
   LayoutDashboard,
   Store,
+  Package,
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { useCart } from "../../context/CartContext";
@@ -101,6 +102,13 @@ const Navbar = () => {
 
                 {profileOpen && (
                   <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-card border border-gray-100 py-2 animate-in fade-in slide-in-from-top-1">
+                    <NavLink
+                      to="/orders"
+                      onClick={() => setProfileOpen(false)}
+                      className="flex items-center gap-2 px-4 py-2 text-sm text-ink-700 hover:bg-gray-50"
+                    >
+                      <Package className="w-4 h-4" /> My Orders
+                    </NavLink>
                     {user.role === "admin" && (
                       <NavLink
                         to="/admin"
@@ -160,6 +168,15 @@ const Navbar = () => {
               className="block text-sm font-medium text-ink-900"
             >
               Admin Panel
+            </NavLink>
+          )}
+          {user && (
+            <NavLink
+              to="/orders"
+              onClick={() => setMobileOpen(false)}
+              className="block text-sm font-medium text-ink-900"
+            >
+              My Orders
             </NavLink>
           )}
           {user ? (

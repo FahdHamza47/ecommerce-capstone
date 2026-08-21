@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import ProductDetail from "./pages/ProductDetail";
 import CartPage from "./pages/CartPage";
 import Checkout from "./pages/Checkout";
+import OrderHistory from "./pages/OrderHistory";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import AdminProducts from "./pages/admin/AdminProducts";
@@ -57,6 +58,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <Checkout />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/orders"
+                element={
+                  <ProtectedRoute>
+                    <OrderHistory />
                   </ProtectedRoute>
                 }
               />
