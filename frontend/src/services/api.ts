@@ -1,9 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
+  baseURL: "https://shopsphere-9d8pto4d.b4a.run/api",
 });
-
 api.interceptors.request.use((config) => {
   const storedUser = localStorage.getItem("user");
   if (storedUser) {
