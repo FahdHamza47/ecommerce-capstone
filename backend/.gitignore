@@ -4,5 +4,3 @@ coverage/
 .env
 .env.*
 !.env.example
-uploads/*
-!uploads/.gitkeep

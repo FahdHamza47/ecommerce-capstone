@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Product from "../models/Product";
+import { uploadBufferToCloudinary } from "../utils/cloudinary";
 
 // @route  GET /api/products/categories
 export const getCategories = async (req: Request, res: Response) => {
@@ -88,11 +89,13 @@ export const createProduct = async (req: Request, res: Response) => {
   try {
     const { name, description, price, category, brand, stock } = req.body;
 
-    // Safely cast req to access files attached by Multer
-    const files = (req as any).files as Array<{ filename: string }> | undefined;
-    const images = files
-      ? files.map((file) => `/uploads/${file.filename}`)
-      : [];
+    const files = (req as any).files as Array<{ buffer: Buffer }> | undefined;
+    const images =
+      files && files.length > 0
+        ? await Promise.all(
+            files.map((file) => uploadBufferToCloudinary(file.buffer)),
+          )
+        : [];
 
     const product = await Product.create({
       name,
@@ -128,10 +131,11 @@ export const updateProduct = async (req: Request, res: Response) => {
     product.brand = brand ?? product.brand;
     product.stock = stock ?? product.stock;
 
-    // If new images were uploaded, append them
-    const files = (req as any).files as Array<{ filename: string }> | undefined;
+    const files = (req as any).files as Array<{ buffer: Buffer }> | undefined;
     if (files && files.length > 0) {
-      const newImages = files.map((file) => `/uploads/${file.filename}`);
+      const newImages = await Promise.all(
+        files.map((file) => uploadBufferToCloudinary(file.buffer)),
+      );
       product.images = [...product.images, ...newImages];
     }
 

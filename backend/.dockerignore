@@ -4,5 +4,3 @@ coverage
 .env
 .git
 *.log
-uploads/*
-!uploads/.gitkeep
