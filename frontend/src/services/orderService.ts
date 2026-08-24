@@ -23,7 +23,7 @@ export const getMyOrders = async (): Promise<Order[]> => {
 };
 
 export const getAllOrders = async (): Promise<Order[]> => {
-  const { data } = await api.get<Order[]>("/orders/myorders");
+  const { data } = await api.get<Order[]>("/orders");
   return data;
 };
 
